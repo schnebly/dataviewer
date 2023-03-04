@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import DataGrid from './DataGrid';
-import Charts from './Charts';
+import { LineCharts, BarCharts } from './Charts';
 import { useState, useEffect } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -48,45 +48,76 @@ const orderRows = [
 
 const materialColumns = [
   { field: 'month', headerName: 'Month', width: 100, sortable: false },
-  { field: 'material', headerName: 'Material', width: 130, sortable: false },
   {
-    field: 'numOrders',
-    headerName: 'Number of Orders',
-    width: 160,
-    type: 'number',
+    field: 'basic_plastic',
+    headerName: 'basic_plastic',
+    width: 130,
+  },
+  {
+    field: 'premium_plastic',
+    headerName: 'premium_plastic',
+    width: 130,
+  },
+  {
+    field: 'color_plastic',
+    headerName: 'color_plastic',
+    width: 130,
+  },
+  {
+    field: 'bronze',
+    headerName: 'bronze',
+    width: 130,
   },
 ];
 
 const materialRows = [
-  { month: 'February', material: 'basic-plastic', numOrders: 8223 },
-  { month: 'February', material: 'premium-plastic', numOrders: 1389 },
-  { month: 'February', material: 'color-plastic', numOrders: 20123 },
-  { month: 'February', material: 'bronze', numOrders: 897 },
+  {
+    month: 'February',
+    basic_plastic: 8223,
+    premium_plastic: 1389,
+    color_plastic: 20123,
+    bronze: 897,
+  },
 
-  { month: 'March', material: 'basic-plastic', numOrders: 8346 },
-  { month: 'March', material: 'premium-plastic', numOrders: 1298 },
-  { month: 'March', material: 'color-plastic', numOrders: 22987 },
-  { month: 'March', material: 'bronze', numOrders: 847 },
+  {
+    month: 'March',
+    basic_plastic: 8346,
+    premium_plastic: 1298,
+    color_plastic: 22987,
+    bronze: 847,
+  },
 
-  { month: 'April', material: 'basic-plastic', numOrders: 7583 },
-  { month: 'April', material: 'premium-plastic', numOrders: 2947 },
-  { month: 'April', material: 'color-plastic', numOrders: 19364 },
-  { month: 'April', material: 'bronze', numOrders: 976 },
+  {
+    month: 'April',
+    basic_plastic: 7583,
+    premium_plastic: 2947,
+    color_plastic: 19364,
+    bronze: 976,
+  },
 
-  { month: 'May', material: 'basic-plastic', numOrders: 8643 },
-  { month: 'May', material: 'premium-plastic', numOrders: 1202 },
-  { month: 'May', material: 'color-plastic', numOrders: 23942 },
-  { month: 'May', material: 'bronze', numOrders: 1293 },
+  {
+    month: 'May',
+    basic_plastic: 8643,
+    premium_plastic: 1202,
+    color_plastic: 23942,
+    bronze: 1293,
+  },
 
-  { month: 'June', material: 'basic-plastic', numOrders: 4569 },
-  { month: 'June', material: 'premium-plastic', numOrders: 1589 },
-  { month: 'June', material: 'color-plastic', numOrders: 34877 },
-  { month: 'June', material: 'bronze', numOrders: 522 },
+  {
+    month: 'June',
+    basic_plastic: 4569,
+    premium_plastic: 1589,
+    color_plastic: 34877,
+    bronze: 522,
+  },
 
-  { month: 'July', material: 'basic-plastic', numOrders: 9567 },
-  { month: 'July', material: 'premium-plastic', numOrders: 10487 },
-  { month: 'July', material: 'color-plastic', numOrders: 38909 },
-  { month: 'July', material: 'bronze', numOrders: 1599 },
+  {
+    month: 'July',
+    basic_plastic: 9567,
+    premium_plastic: 10487,
+    color_plastic: 38909,
+    bronze: 1599,
+  },
 ];
 
 const labels = ['Revenue', 'Orders', 'Materials'];
@@ -142,9 +173,16 @@ function App() {
         </Box>
       )}
       <br />
-      {/* <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Charts data={rows} lineDataKey={lineDataKey[tab]} />
-      </Box> */}
+      {tab !== 2 && (
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <LineCharts data={rows} lineDataKey={lineDataKey[tab]} />
+        </Box>
+      )}
+      {tab === 2 && (
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <BarCharts data={rows} />
+        </Box>
+      )}
     </Container>
   );
 }

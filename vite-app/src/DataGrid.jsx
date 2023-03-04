@@ -8,7 +8,7 @@ export default function DataTable(props) {
         columns={props.cols}
         // pageSize={5}
         rowsPerPageOptions={[5]}
-        getRowId={(row) => row.numOrders || row.month}
+        getRowId={(row) => row.month}
         // checkboxSelection
         components={{
           Toolbar: GridToolbar,
